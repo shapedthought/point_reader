@@ -6,8 +6,6 @@ Enabling this feature in the new VSE tool is not public information, you will ne
 
 The VSE tool is being updated regularly so expect breaking changes to this tool.
 
-<img src="images/screenshot.png" alt="screenshot" width="700" />
-
 ## Installation
 
 ### Install via Cargo
