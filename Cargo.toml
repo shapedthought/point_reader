@@ -1,10 +1,13 @@
 [package]
 name = "point_reader"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "A simple CLI tool to read and display VSE points data"
 authors = ["Ed Howard"]
 license = "MIT"
+repository = "https://github.com/shapedthought/point_reader"
+documentation = "https://github.com/shapedthought/point_reader"
+homepage = "https://github.com/shapedthought/point_reader"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
