@@ -1,0 +1,7 @@
+*.exe
+/target
+.dockerignore
+README.md
+Dockerfile
+.gitignore
+*.json
