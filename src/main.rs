@@ -98,7 +98,7 @@ struct Cli {
 fn main() -> Result<()> {
     let cli = Cli::parse();
 
-    let file = fs::read_to_string(cli.file)?;
+    let file = fs::read_to_string(cli.file.clone())?;
 
     let vse_data: models::Root = serde_json::from_str(&file)?;
 
@@ -111,8 +111,8 @@ fn main() -> Result<()> {
         .map(|primary_backup| primary_backup.workload_name.clone())
         .collect::<Vec<String>>();
 
-    let workload_selected = if let Some(workload) = cli.workload {
-        workload_names.iter().position(|x| x == &workload).unwrap()
+    let workload_selected = if let Some(workload) = &cli.workload {
+        workload_names.iter().position(|x| x == workload).unwrap()
     } else {
         Select::with_theme(&ColorfulTheme::default())
             .with_prompt("Select a workload")
@@ -133,10 +133,10 @@ fn main() -> Result<()> {
         .find(|backup| backup.workload_name == workload_name)
         .unwrap();
 
-    // let selected_workload = workloads[workload_selected].clone();
-
     let mut table = Table::new();
     let mut table_totals = Table::new();
+
+    let mut tier_data: Vec<Vec<String>> = Vec::new();
 
     table
         .load_preset(UTF8_FULL)
@@ -154,53 +154,13 @@ fn main() -> Result<()> {
             Cell::new("monthly"),
             Cell::new("yearly"),
         ]);
+        
+    add_data(&cli, &workload.archive_tier_result, &mut tier_data, "a");
+    add_data(&cli, &workload.capacity_tier_result, &mut tier_data, "c");
+    add_data(&cli, &workload.performance_tier_result, &mut tier_data, "p");
 
-    if cli.tiers.to_lowercase().contains('a') {
-        for point in &workload.archive_tier_result {
-            table.add_row(vec![
-                point.point_type.clone(),
-                format!("{:.2}", point.backup_size),
-                point.point.day.to_string(),
-                point.point.is_full.to_string(),
-                point.point.is_gfs.to_string(),
-                point.point.flags.daily.to_string(),
-                point.point.flags.weekly.to_string(),
-                point.point.flags.monthly.to_string(),
-                point.point.flags.yearly.to_string(),
-            ]);
-        }
-    }
-
-    if cli.tiers.to_lowercase().contains('c') {
-        for point in &workload.capacity_tier_result {
-            table.add_row(vec![
-                point.point_type.clone(),
-                format!("{:.2}", point.backup_size),
-                point.point.day.to_string(),
-                point.point.is_full.to_string(),
-                point.point.is_gfs.to_string(),
-                point.point.flags.daily.to_string(),
-                point.point.flags.weekly.to_string(),
-                point.point.flags.monthly.to_string(),
-                point.point.flags.yearly.to_string(),
-            ]);
-        }
-    }
-
-    if cli.tiers.to_lowercase().contains('p') {
-        for point in &workload.performance_tier_result {
-            table.add_row(vec![
-                point.point_type.clone(),
-                format!("{:.2}", point.backup_size),
-                point.point.day.to_string(),
-                point.point.is_full.to_string(),
-                point.point.is_gfs.to_string(),
-                point.point.flags.daily.to_string(),
-                point.point.flags.weekly.to_string(),
-                point.point.flags.monthly.to_string(),
-                point.point.flags.yearly.to_string(),
-            ]);
-        }
+    for row in tier_data.iter() {
+        table.add_row(row);
     }
 
     let workload_name = &workload.workload_name;
@@ -242,7 +202,6 @@ fn main() -> Result<()> {
         let mut wtr = csv::Writer::from_path(file_name)?;
 
         wtr.write_record([
-            "Workload Name",
             "Point Type",
             "backupSize",
             "day",
@@ -254,59 +213,30 @@ fn main() -> Result<()> {
             "yearly",
         ])?;
 
-        if cli.tiers.to_lowercase().contains('a') {
-            for point in &workload.archive_tier_result {
-                wtr.write_record(&[
-                    workload.workload_name.clone(),
-                    point.point_type.clone(),
-                    format!("{:.2}", point.backup_size),
-                    point.point.day.to_string(),
-                    point.point.is_full.to_string(),
-                    point.point.is_gfs.to_string(),
-                    point.point.flags.daily.to_string(),
-                    point.point.flags.weekly.to_string(),
-                    point.point.flags.monthly.to_string(),
-                    point.point.flags.yearly.to_string(),
-                ])?;
-            }
-        }
-
-        if cli.tiers.to_lowercase().contains('c') {
-            for point in &workload.capacity_tier_result {
-                wtr.write_record(&[
-                    workload.workload_name.clone(),
-                    point.point_type.clone(),
-                    format!("{:.2}", point.backup_size),
-                    point.point.day.to_string(),
-                    point.point.is_full.to_string(),
-                    point.point.is_gfs.to_string(),
-                    point.point.flags.daily.to_string(),
-                    point.point.flags.weekly.to_string(),
-                    point.point.flags.monthly.to_string(),
-                    point.point.flags.yearly.to_string(),
-                ])?;
-            }
-        }
-
-        if cli.tiers.to_lowercase().contains('p') {
-            for point in &workload.performance_tier_result {
-                wtr.write_record(&[
-                    workload.workload_name.clone(),
-                    point.point_type.clone(),
-                    format!("{:.2}", point.backup_size),
-                    point.point.day.to_string(),
-                    point.point.is_full.to_string(),
-                    point.point.is_gfs.to_string(),
-                    point.point.flags.daily.to_string(),
-                    point.point.flags.weekly.to_string(),
-                    point.point.flags.monthly.to_string(),
-                    point.point.flags.yearly.to_string(),
-                ])?;
-            }
+        for row in tier_data {
+            wtr.write_record(row)?;
         }
 
         wtr.flush()?;
     }
 
     Ok(())
+}
+
+fn add_data(cli: &Cli, tier_result: &Vec<models::TierResult>, tier_data: &mut Vec<Vec<String>>, tier: &str) {
+    if cli.tiers.to_lowercase().contains(tier) {
+        for point in tier_result {
+            tier_data.push(vec![
+                point.point_type.clone(),
+                format!("{:.2}", point.backup_size),
+                point.point.day.to_string(),
+                point.point.is_full.to_string(),
+                point.point.is_gfs.to_string(),
+                point.point.flags.daily.to_string(),
+                point.point.flags.weekly.to_string(),
+                point.point.flags.monthly.to_string(),
+                point.point.flags.yearly.to_string(),
+            ]);
+        }
+    }
 }
