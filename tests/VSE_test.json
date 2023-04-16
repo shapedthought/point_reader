@@ -1,0 +1,1167 @@
+{
+  "computed": {
+    "computeData": [
+      {
+        "siteId": "-",
+        "component": "Backup Server",
+        "site": "Global",
+        "name": "-",
+        "cores": "4",
+        "ram": "10"
+      },
+      {
+        "siteId": "-",
+        "component": "Database",
+        "site": "Global",
+        "name": "-",
+        "cores": "2",
+        "ram": "4"
+      },
+      {
+        "siteId": "-",
+        "component": "Enterprise Manager",
+        "site": "Global",
+        "name": "-",
+        "cores": "8",
+        "ram": "16"
+      },
+      {
+        "siteId": "15c43b1b-b65c-4cad-aa6d-ecca4a051ea9",
+        "component": "Proxy",
+        "site": "Site A",
+        "name": "-",
+        "cores": "19",
+        "ram": "38"
+      },
+      {
+        "siteId": "15c43b1b-b65c-4cad-aa6d-ecca4a051ea9",
+        "component": "Repository",
+        "site": "Site A",
+        "name": "Site A-Default",
+        "cores": "7",
+        "ram": "26"
+      },
+      {
+        "siteId": "c30c1716-9ed4-4e0e-84bf-7d17a5a40759",
+        "component": "Proxy",
+        "site": "Site B",
+        "name": "-",
+        "cores": "4",
+        "ram": "8"
+      },
+      {
+        "siteId": "c30c1716-9ed4-4e0e-84bf-7d17a5a40759",
+        "component": "Repository",
+        "site": "Site B",
+        "name": "Site B-Default",
+        "cores": "2",
+        "ram": "8"
+      }
+    ],
+    "performanceData": [
+      {
+        "site": "Site A",
+        "repoName": "Site A-Default",
+        "capacity": "177.62",
+        "firstTransactions": "0",
+        "secondTransactions": "0",
+        "lastTransactions": "0",
+        "firstImmutTransactions": "0",
+        "secondImmutTransactions": "0",
+        "lastImmutTransactions": "0"
+      },
+      {
+        "site": "Site B",
+        "repoName": "Site B-Default",
+        "capacity": "0",
+        "firstTransactions": "0",
+        "secondTransactions": "0",
+        "lastTransactions": "0",
+        "firstImmutTransactions": "0",
+        "secondImmutTransactions": "0",
+        "lastImmutTransactions": "0"
+      }
+    ],
+    "objectStorageData": [
+      {
+        "type": "Cap",
+        "name": "General S3 compatible",
+        "capacity": "193.00",
+        "firstTransactions": "3795",
+        "secondTransactions": "4428",
+        "lastTransactions": "4797",
+        "firstImmutTransactions": "0",
+        "secondImmutTransactions": "0",
+        "lastImmutTransactions": "0"
+      },
+      {
+        "type": "Archive",
+        "name": "General Amazon S3 Glacier",
+        "capacity": "532.40",
+        "firstTransactions": "2",
+        "secondTransactions": "2",
+        "lastTransactions": "3",
+        "firstImmutTransactions": "0",
+        "secondImmutTransactions": "0",
+        "lastImmutTransactions": "0"
+      }
+    ]
+  },
+  "rawIn": {
+    "archTierRepos": [
+      {
+        "archiveTierRepoId": "general-glacier-archive",
+        "archiveTierRepoName": "General Amazon S3 Glacier"
+      },
+      {
+        "archiveTierRepoId": "general-azure-archive",
+        "archiveTierRepoName": "General Microsoft Azure Archive Storage"
+      }
+    ],
+    "backupWindows": [
+      {
+        "backupWindowId": "bw8",
+        "backupWindowName": "8 Hour",
+        "fullWindow": 24,
+        "incrementalWindow": 8,
+        "default": true
+      },
+      {
+        "backupWindowId": "bw12",
+        "backupWindowName": "12 Hour",
+        "fullWindow": 24,
+        "incrementalWindow": 12,
+        "default": false
+      }
+    ],
+    "capTierRepos": [
+      {
+        "capTierRepoId": "general-s3compatible-capacity",
+        "capTierRepoName": "General S3 compatible"
+      },
+      {
+        "capTierRepoId": "general-awss3-capacity",
+        "capTierRepoName": "General AWS S3"
+      },
+      {
+        "capTierRepoId": "general-azureblob-capacity",
+        "capTierRepoName": "General Azure Blob Storage"
+      },
+      {
+        "capTierRepoId": "general-ibmcloud-capacity",
+        "capTierRepoName": "General IBM Cloud Object Storage"
+      },
+      {
+        "capTierRepoId": "general-googlecloud-capacity",
+        "capTierRepoName": "General Google Cloud Object Storage"
+      },
+      {
+        "capTierRepoId": "general-wasabis3-capacity",
+        "capTierRepoName": "General Wasabi S3 Object Storage"
+      }
+    ],
+    "dataProperties": [
+      {
+        "dataPropertyId": "dpopt",
+        "dataPropertyName": "Generic Optimistic showPoints",
+        "changeRate": 5,
+        "compression": 50,
+        "growthFactor": 10,
+        "default": false
+      },
+      {
+        "dataPropertyId": "dppess",
+        "dataPropertyName": "Generic Pessimistic",
+        "changeRate": 10,
+        "compression": 50,
+        "growthFactor": 10,
+        "default": true
+      },
+      {
+        "dataPropertyId": "dpdb",
+        "dataPropertyName": "Database",
+        "changeRate": 20,
+        "compression": 50,
+        "growthFactor": 10,
+        "default": false
+      },
+      {
+        "dataPropertyId": "dpnocomp",
+        "dataPropertyName": "Incompressible",
+        "changeRate": 10,
+        "compression": 100,
+        "growthFactor": 10,
+        "default": false
+      }
+    ],
+    "perfTierRepos": [
+      {
+        "repoId": "23de7670-c8f3-463f-abf0-7347ec6f282f",
+        "repoName": "Site A-Default",
+        "siteId": "15c43b1b-b65c-4cad-aa6d-ecca4a051ea9",
+        "copyCapacityTierEnabled": false,
+        "moveCapacityTierEnabled": true,
+        "archiveTierEnabled": true,
+        "capacityTierDays": 7,
+        "archiveTierDays": 60,
+        "capacityTierRepoId": "general-s3compatible-capacity",
+        "archiveTierRepoId": "general-glacier-archive",
+        "storageType": "xfsRefs",
+        "immutablePerf": false,
+        "immutableCap": false
+      },
+      {
+        "repoId": "3832a6c2-5260-409b-8d67-651b4bf6a512",
+        "repoName": "Site B-Default",
+        "siteId": "c30c1716-9ed4-4e0e-84bf-7d17a5a40759",
+        "copyCapacityTierEnabled": false,
+        "moveCapacityTierEnabled": false,
+        "archiveTierEnabled": false,
+        "capacityTierDays": 7,
+        "archiveTierDays": 60,
+        "capacityTierRepoId": "general-s3compatible-capacity",
+        "archiveTierRepoId": "general-glacier-archive",
+        "storageType": "xfsRefs",
+        "immutablePerf": false,
+        "immutableCap": false
+      }
+    ],
+    "projectLength": 3,
+    "retentions": [
+      {
+        "retentionId": "rt1",
+        "retentionName": "14D",
+        "simple": 14,
+        "weekly": 0,
+        "monthly": 0,
+        "yearly": 0,
+        "default": false
+      },
+      {
+        "retentionId": "rt2",
+        "retentionName": "30D",
+        "simple": 30,
+        "weekly": 0,
+        "monthly": 0,
+        "yearly": 0,
+        "default": false
+      },
+      {
+        "retentionId": "rt3",
+        "retentionName": "30D 8W",
+        "simple": 30,
+        "weekly": 8,
+        "monthly": 0,
+        "yearly": 0,
+        "default": false
+      },
+      {
+        "retentionId": "rt4",
+        "retentionName": "30D 8W 6M",
+        "simple": 30,
+        "weekly": 8,
+        "monthly": 6,
+        "yearly": 0,
+        "default": false
+      },
+      {
+        "retentionId": "rt5",
+        "retentionName": "30D 8W 12M 3Y",
+        "simple": 10,
+        "weekly": 5,
+        "monthly": 12,
+        "yearly": 3,
+        "default": true
+      }
+    ],
+    "showPoints": false,
+    "showWorkloads": true,
+    "sites": [
+      {
+        "siteId": "15c43b1b-b65c-4cad-aa6d-ecca4a051ea9",
+        "siteName": "Site A"
+      },
+      { "siteId": "c30c1716-9ed4-4e0e-84bf-7d17a5a40759", "siteName": "Site B" }
+    ],
+    "workloads": [
+      {
+        "backup": {
+          "retentionId": "rt5",
+          "repoId": "23de7670-c8f3-463f-abf0-7347ec6f282f",
+          "backupWindowId": "bw8"
+        },
+        "copies": [],
+        "copiesEnabled": false,
+        "dataPropertyId": "dppess",
+        "enabled": true,
+        "siteId": "15c43b1b-b65c-4cad-aa6d-ecca4a051ea9",
+        "sourceTB": 100,
+        "units": 1000,
+        "workloadId": "0771097c-22a0-4b12-bf2d-ebb89b47fe3a",
+        "workloadName": "Test",
+        "workloadType": "VM",
+        "largeBlock": false
+      }
+    ]
+  },
+  "rawOut": {
+    "global": {
+      "vbrServer": { "vbrCores": 4, "vbrRam": 10 },
+      "dbServer": { "dbCores": 2, "dbRam": 4 },
+      "enterpriseManager": { "cores": 8, "ram": 16 }
+    },
+    "sites": [
+      {
+        "siteName": "Site A",
+        "siteId": "15c43b1b-b65c-4cad-aa6d-ecca4a051ea9",
+        "compute": {
+          "proxyCores": 19,
+          "proxyRam": 38,
+          "repoCompute": [
+            {
+              "repoId": "23de7670-c8f3-463f-abf0-7347ec6f282f",
+              "repoName": "Site A-Default",
+              "repoIncCores": 7,
+              "repoIncRam": 26
+            }
+          ]
+        },
+        "storage": [
+          {
+            "repoName": "Site A-Default",
+            "siteId": "15c43b1b-b65c-4cad-aa6d-ecca4a051ea9",
+            "repoId": "23de7670-c8f3-463f-abf0-7347ec6f282f",
+            "points": {
+              "primaryBackup": [
+                {
+                  "workloadName": "Test",
+                  "workloadId": "0771097c-22a0-4b12-bf2d-ebb89b47fe3a",
+                  "performanceTierResult": [
+                    {
+                      "pointType": "performanceTier",
+                      "point": {
+                        "day": 14,
+                        "isFull": true,
+                        "isGFS": false,
+                        "flags": {
+                          "daily": 14,
+                          "weekly": 2,
+                          "monthly": 0,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 66.55000000000003
+                    },
+                    {
+                      "pointType": "performanceTier",
+                      "point": {
+                        "day": 13,
+                        "isFull": false,
+                        "isGFS": false,
+                        "flags": {
+                          "daily": 13,
+                          "weekly": 0,
+                          "monthly": 0,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 6.655000000000003
+                    },
+                    {
+                      "pointType": "performanceTier",
+                      "point": {
+                        "day": 12,
+                        "isFull": false,
+                        "isGFS": false,
+                        "flags": {
+                          "daily": 12,
+                          "weekly": 0,
+                          "monthly": 0,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 6.655000000000003
+                    },
+                    {
+                      "pointType": "performanceTier",
+                      "point": {
+                        "day": 11,
+                        "isFull": false,
+                        "isGFS": false,
+                        "flags": {
+                          "daily": 11,
+                          "weekly": 0,
+                          "monthly": 0,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 6.655000000000003
+                    },
+                    {
+                      "pointType": "performanceTier",
+                      "point": {
+                        "day": 10,
+                        "isFull": false,
+                        "isGFS": false,
+                        "flags": {
+                          "daily": 10,
+                          "weekly": 0,
+                          "monthly": 0,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 6.655000000000003
+                    },
+                    {
+                      "pointType": "performanceTier",
+                      "point": {
+                        "day": 9,
+                        "isFull": false,
+                        "isGFS": false,
+                        "flags": {
+                          "daily": 9,
+                          "weekly": 0,
+                          "monthly": 0,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 6.655000000000003
+                    },
+                    {
+                      "pointType": "performanceTier",
+                      "point": {
+                        "day": 8,
+                        "isFull": false,
+                        "isGFS": false,
+                        "flags": {
+                          "daily": 8,
+                          "weekly": 0,
+                          "monthly": 0,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 6.655000000000003
+                    },
+                    {
+                      "pointType": "performanceTier",
+                      "point": {
+                        "day": 7,
+                        "isFull": true,
+                        "isGFS": false,
+                        "flags": {
+                          "daily": 7,
+                          "weekly": 1,
+                          "monthly": 0,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 6.655000000000003
+                    },
+                    {
+                      "pointType": "performanceTier",
+                      "point": {
+                        "day": 6,
+                        "isFull": false,
+                        "isGFS": false,
+                        "flags": {
+                          "daily": 6,
+                          "weekly": 0,
+                          "monthly": 0,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 6.655000000000003
+                    },
+                    {
+                      "pointType": "performanceTier",
+                      "point": {
+                        "day": 5,
+                        "isFull": false,
+                        "isGFS": false,
+                        "flags": {
+                          "daily": 5,
+                          "weekly": 0,
+                          "monthly": 0,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 6.655000000000003
+                    },
+                    {
+                      "pointType": "performanceTier",
+                      "point": {
+                        "day": 4,
+                        "isFull": false,
+                        "isGFS": false,
+                        "flags": {
+                          "daily": 4,
+                          "weekly": 0,
+                          "monthly": 0,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 6.655000000000003
+                    },
+                    {
+                      "pointType": "performanceTier",
+                      "point": {
+                        "day": 3,
+                        "isFull": false,
+                        "isGFS": false,
+                        "flags": {
+                          "daily": 3,
+                          "weekly": 0,
+                          "monthly": 0,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 6.655000000000003
+                    },
+                    {
+                      "pointType": "performanceTier",
+                      "point": {
+                        "day": 2,
+                        "isFull": false,
+                        "isGFS": false,
+                        "flags": {
+                          "daily": 2,
+                          "weekly": 0,
+                          "monthly": 0,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 6.655000000000003
+                    },
+                    {
+                      "pointType": "performanceTier",
+                      "point": {
+                        "day": 1,
+                        "isFull": false,
+                        "isGFS": false,
+                        "flags": {
+                          "daily": 1,
+                          "weekly": 0,
+                          "monthly": 0,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 6.655000000000003
+                    }
+                  ],
+                  "capacityTierResult": [
+                    {
+                      "pointType": "capacityTier",
+                      "point": {
+                        "day": 35,
+                        "isFull": true,
+                        "isGFS": true,
+                        "flags": {
+                          "daily": 0,
+                          "weekly": 5,
+                          "monthly": 1,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 66.55000000000003
+                    },
+                    {
+                      "pointType": "capacityTier",
+                      "point": {
+                        "day": 28,
+                        "isFull": true,
+                        "isGFS": true,
+                        "flags": {
+                          "daily": 0,
+                          "weekly": 4,
+                          "monthly": 0,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 19.96500000000001
+                    },
+                    {
+                      "pointType": "capacityTier",
+                      "point": {
+                        "day": 21,
+                        "isFull": true,
+                        "isGFS": false,
+                        "flags": {
+                          "daily": 21,
+                          "weekly": 3,
+                          "monthly": 0,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 19.96500000000001
+                    },
+                    {
+                      "pointType": "capacityTier",
+                      "point": {
+                        "day": 20,
+                        "isFull": false,
+                        "isGFS": false,
+                        "flags": {
+                          "daily": 20,
+                          "weekly": 0,
+                          "monthly": 0,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 6.655000000000003
+                    },
+                    {
+                      "pointType": "capacityTier",
+                      "point": {
+                        "day": 19,
+                        "isFull": false,
+                        "isGFS": false,
+                        "flags": {
+                          "daily": 19,
+                          "weekly": 0,
+                          "monthly": 0,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 6.655000000000003
+                    },
+                    {
+                      "pointType": "capacityTier",
+                      "point": {
+                        "day": 18,
+                        "isFull": false,
+                        "isGFS": false,
+                        "flags": {
+                          "daily": 18,
+                          "weekly": 0,
+                          "monthly": 0,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 6.655000000000003
+                    },
+                    {
+                      "pointType": "capacityTier",
+                      "point": {
+                        "day": 17,
+                        "isFull": false,
+                        "isGFS": false,
+                        "flags": {
+                          "daily": 17,
+                          "weekly": 0,
+                          "monthly": 0,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 6.655000000000003
+                    },
+                    {
+                      "pointType": "capacityTier",
+                      "point": {
+                        "day": 16,
+                        "isFull": false,
+                        "isGFS": false,
+                        "flags": {
+                          "daily": 16,
+                          "weekly": 0,
+                          "monthly": 0,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 6.655000000000003
+                    },
+                    {
+                      "pointType": "capacityTier",
+                      "point": {
+                        "day": 15,
+                        "isFull": false,
+                        "isGFS": false,
+                        "flags": {
+                          "daily": 15,
+                          "weekly": 0,
+                          "monthly": 0,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 6.655000000000003
+                    },
+                    {
+                      "pointType": "capacityTier",
+                      "point": {
+                        "day": 14,
+                        "isFull": true,
+                        "isGFS": false,
+                        "flags": {
+                          "daily": 14,
+                          "weekly": 2,
+                          "monthly": 0,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 6.655000000000003
+                    },
+                    {
+                      "pointType": "capacityTier",
+                      "point": {
+                        "day": 13,
+                        "isFull": false,
+                        "isGFS": false,
+                        "flags": {
+                          "daily": 13,
+                          "weekly": 0,
+                          "monthly": 0,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 6.655000000000003
+                    },
+                    {
+                      "pointType": "capacityTier",
+                      "point": {
+                        "day": 12,
+                        "isFull": false,
+                        "isGFS": false,
+                        "flags": {
+                          "daily": 12,
+                          "weekly": 0,
+                          "monthly": 0,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 6.655000000000003
+                    },
+                    {
+                      "pointType": "capacityTier",
+                      "point": {
+                        "day": 11,
+                        "isFull": false,
+                        "isGFS": false,
+                        "flags": {
+                          "daily": 11,
+                          "weekly": 0,
+                          "monthly": 0,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 6.655000000000003
+                    },
+                    {
+                      "pointType": "capacityTier",
+                      "point": {
+                        "day": 10,
+                        "isFull": false,
+                        "isGFS": false,
+                        "flags": {
+                          "daily": 10,
+                          "weekly": 0,
+                          "monthly": 0,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 6.655000000000003
+                    },
+                    {
+                      "pointType": "capacityTier",
+                      "point": {
+                        "day": 9,
+                        "isFull": false,
+                        "isGFS": false,
+                        "flags": {
+                          "daily": 9,
+                          "weekly": 0,
+                          "monthly": 0,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 6.655000000000003
+                    },
+                    {
+                      "pointType": "capacityTier",
+                      "point": {
+                        "day": 8,
+                        "isFull": false,
+                        "isGFS": false,
+                        "flags": {
+                          "daily": 8,
+                          "weekly": 0,
+                          "monthly": 0,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 6.655000000000003
+                    }
+                  ],
+                  "archiveTierResult": [
+                    {
+                      "pointType": "archiveTier",
+                      "point": {
+                        "day": 1099,
+                        "isFull": true,
+                        "isGFS": true,
+                        "flags": {
+                          "daily": 0,
+                          "weekly": 0,
+                          "monthly": 0,
+                          "yearly": 3
+                        }
+                      },
+                      "backupSize": 66.55000000000003
+                    },
+                    {
+                      "pointType": "archiveTier",
+                      "point": {
+                        "day": 735,
+                        "isFull": true,
+                        "isGFS": true,
+                        "flags": {
+                          "daily": 0,
+                          "weekly": 0,
+                          "monthly": 0,
+                          "yearly": 2
+                        }
+                      },
+                      "backupSize": 66.55000000000003
+                    },
+                    {
+                      "pointType": "archiveTier",
+                      "point": {
+                        "day": 371,
+                        "isFull": true,
+                        "isGFS": true,
+                        "flags": {
+                          "daily": 0,
+                          "weekly": 0,
+                          "monthly": 12,
+                          "yearly": 1
+                        }
+                      },
+                      "backupSize": 66.55000000000003
+                    },
+                    {
+                      "pointType": "archiveTier",
+                      "point": {
+                        "day": 336,
+                        "isFull": true,
+                        "isGFS": true,
+                        "flags": {
+                          "daily": 0,
+                          "weekly": 0,
+                          "monthly": 11,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 33.27500000000001
+                    },
+                    {
+                      "pointType": "archiveTier",
+                      "point": {
+                        "day": 308,
+                        "isFull": true,
+                        "isGFS": true,
+                        "flags": {
+                          "daily": 0,
+                          "weekly": 0,
+                          "monthly": 10,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 33.27500000000001
+                    },
+                    {
+                      "pointType": "archiveTier",
+                      "point": {
+                        "day": 280,
+                        "isFull": true,
+                        "isGFS": true,
+                        "flags": {
+                          "daily": 0,
+                          "weekly": 0,
+                          "monthly": 9,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 33.27500000000001
+                    },
+                    {
+                      "pointType": "archiveTier",
+                      "point": {
+                        "day": 245,
+                        "isFull": true,
+                        "isGFS": true,
+                        "flags": {
+                          "daily": 0,
+                          "weekly": 0,
+                          "monthly": 8,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 33.27500000000001
+                    },
+                    {
+                      "pointType": "archiveTier",
+                      "point": {
+                        "day": 217,
+                        "isFull": true,
+                        "isGFS": true,
+                        "flags": {
+                          "daily": 0,
+                          "weekly": 0,
+                          "monthly": 7,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 33.27500000000001
+                    },
+                    {
+                      "pointType": "archiveTier",
+                      "point": {
+                        "day": 189,
+                        "isFull": true,
+                        "isGFS": true,
+                        "flags": {
+                          "daily": 0,
+                          "weekly": 0,
+                          "monthly": 6,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 33.27500000000001
+                    },
+                    {
+                      "pointType": "archiveTier",
+                      "point": {
+                        "day": 154,
+                        "isFull": true,
+                        "isGFS": true,
+                        "flags": {
+                          "daily": 0,
+                          "weekly": 0,
+                          "monthly": 5,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 33.27500000000001
+                    },
+                    {
+                      "pointType": "archiveTier",
+                      "point": {
+                        "day": 126,
+                        "isFull": true,
+                        "isGFS": true,
+                        "flags": {
+                          "daily": 0,
+                          "weekly": 0,
+                          "monthly": 4,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 33.27500000000001
+                    },
+                    {
+                      "pointType": "archiveTier",
+                      "point": {
+                        "day": 98,
+                        "isFull": true,
+                        "isGFS": true,
+                        "flags": {
+                          "daily": 0,
+                          "weekly": 0,
+                          "monthly": 3,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 33.27500000000001
+                    },
+                    {
+                      "pointType": "archiveTier",
+                      "point": {
+                        "day": 63,
+                        "isFull": true,
+                        "isGFS": true,
+                        "flags": {
+                          "daily": 0,
+                          "weekly": 0,
+                          "monthly": 2,
+                          "yearly": 0
+                        }
+                      },
+                      "backupSize": 33.27500000000001
+                    }
+                  ],
+                  "perfTierPointCount": 14,
+                  "capTierPointCount": 16,
+                  "archTierPointCount": 13,
+                  "totalPerformance": 153.06500000000005,
+                  "totalCapacity": 192.99500000000006,
+                  "totalArchive": 532.4000000000003,
+                  "workspace": 24.55,
+                  "individualIncrementalSize": 6.655000000000003,
+                  "blockGeneration": 10,
+                  "performanceTierImmutabilityTax": 0,
+                  "capacityTierImmutabilityTax": 0,
+                  "repoId": "23de7670-c8f3-463f-abf0-7347ec6f282f",
+                  "repoName": "Site A-Default",
+                  "capTierRepoId": "general-s3compatible-capacity",
+                  "archiveTierRepoId": "general-glacier-archive",
+                  "backupType": 0,
+                  "copiesEnabled": false,
+                  "perfTierTransactions": {
+                    "offloadMonth": 0,
+                    "offloadType": "-",
+                    "firstTransactions": 0,
+                    "secondTransactions": 0,
+                    "lastTransactions": 0,
+                    "firstImmutTrans": 0,
+                    "secondImmutTrans": 0,
+                    "lastImmutTrans": 0
+                  },
+                  "capTierTransactions": {
+                    "offloadMonth": 0,
+                    "offloadType": "I",
+                    "firstTransactions": 3795,
+                    "secondTransactions": 4428,
+                    "lastTransactions": 4797,
+                    "firstImmutTrans": 0,
+                    "secondImmutTrans": 0,
+                    "lastImmutTrans": 0
+                  },
+                  "archTierTransactions": {
+                    "offloadMonth": 2,
+                    "offloadType": "MY",
+                    "firstTransactions": 2,
+                    "secondTransactions": 2,
+                    "lastTransactions": 3,
+                    "firstImmutTrans": 0,
+                    "secondImmutTrans": 0,
+                    "lastImmutTrans": 0
+                  }
+                }
+              ],
+              "copyBackup": []
+            },
+            "performanceTierCap": 153.06500000000005,
+            "workspace": 24.55,
+            "capacityTierCap": 192.99500000000006,
+            "archiveTierCap": 0,
+            "performanceTierCopyCap": 0,
+            "capacityTierCopyCap": 0,
+            "archiveTierCopyCap": 532.4000000000003,
+            "totalPerformanceTier": 177.61500000000007,
+            "totalCapacityTier": 192.99500000000006,
+            "totalArchiveTier": 532.4000000000003,
+            "pefTierTransactions": {
+              "offloadDays": 7,
+              "firstTransactions": 0,
+              "secondTransactions": 0,
+              "lastTransactions": 0,
+              "firstImmutTransactions": 0,
+              "secondImmutTransactions": 0,
+              "lastImmutTransactions": 0
+            },
+            "capTierTransactions": {
+              "offloadDays": 60,
+              "firstTransactions": 3795,
+              "secondTransactions": 4428,
+              "lastTransactions": 4797,
+              "firstImmutTransactions": 0,
+              "secondImmutTransactions": 0,
+              "lastImmutTransactions": 0
+            },
+            "archiveTransactions": {
+              "offloadDays": 0,
+              "firstTransactions": 2,
+              "secondTransactions": 2,
+              "lastTransactions": 3,
+              "firstImmutTransactions": 0,
+              "secondImmutTransactions": 0,
+              "lastImmutTransactions": 0
+            }
+          }
+        ]
+      },
+      {
+        "siteName": "Site B",
+        "siteId": "c30c1716-9ed4-4e0e-84bf-7d17a5a40759",
+        "compute": {
+          "proxyCores": 4,
+          "proxyRam": 8,
+          "repoCompute": [
+            {
+              "repoId": "3832a6c2-5260-409b-8d67-651b4bf6a512",
+              "repoName": "Site B-Default",
+              "repoIncCores": 2,
+              "repoIncRam": 8
+            }
+          ]
+        },
+        "storage": [
+          {
+            "repoName": "Site B-Default",
+            "siteId": "c30c1716-9ed4-4e0e-84bf-7d17a5a40759",
+            "repoId": "3832a6c2-5260-409b-8d67-651b4bf6a512",
+            "points": { "primaryBackup": [], "copyBackup": [] },
+            "performanceTierCap": 0,
+            "workspace": 0,
+            "capacityTierCap": 0,
+            "archiveTierCap": 0,
+            "performanceTierCopyCap": 0,
+            "capacityTierCopyCap": 0,
+            "archiveTierCopyCap": 0,
+            "totalPerformanceTier": 0,
+            "totalCapacityTier": 0,
+            "totalArchiveTier": 0,
+            "pefTierTransactions": {
+              "offloadDays": 7,
+              "firstTransactions": 0,
+              "secondTransactions": 0,
+              "lastTransactions": 0,
+              "firstImmutTransactions": 0,
+              "secondImmutTransactions": 0,
+              "lastImmutTransactions": 0
+            },
+            "capTierTransactions": {
+              "offloadDays": 60,
+              "firstTransactions": 0,
+              "secondTransactions": 0,
+              "lastTransactions": 0,
+              "firstImmutTransactions": 0,
+              "secondImmutTransactions": 0,
+              "lastImmutTransactions": 0
+            },
+            "archiveTransactions": {
+              "offloadDays": 0,
+              "firstTransactions": 0,
+              "secondTransactions": 0,
+              "lastTransactions": 0,
+              "firstImmutTransactions": 0,
+              "secondImmutTransactions": 0,
+              "lastImmutTransactions": 0
+            }
+          }
+        ]
+      }
+    ],
+    "capacityTier": [
+      {
+        "capTierName": "General S3 compatible",
+        "capTierRepoId": "general-s3compatible-capacity",
+        "capTierCapacity": 192.99500000000006,
+        "firstTransactions": 3795,
+        "secondTransactions": 4428,
+        "lastTransactions": 4797,
+        "firstImmutTransactions": 0,
+        "secondImmutTransactions": 0,
+        "lastImmutTransactions": 0
+      }
+    ],
+    "archiveTier": [
+      {
+        "archiveTierId": "general-glacier-archive",
+        "archiveTierName": "General Amazon S3 Glacier",
+        "archiveTierCapacity": 532.4000000000003,
+        "firstTransactions": 2,
+        "secondTransactions": 2,
+        "lastTransactions": 3
+      }
+    ]
+  }
+}

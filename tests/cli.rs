@@ -6,7 +6,7 @@ fn runs() {
 
     cmd.args(&[
         "-f",
-        "tests\\VSE_Result_15_04_2023, 14_59_30.json",
+        "tests\\VSE_test.json",
         "-w",
         "Test",
     ]);
@@ -20,7 +20,7 @@ fn cannot_find_file() {
 
     cmd.args(&[
         "-f",
-        "tests\\VSE_Result_15_04_2023, 14_59_31.json",
+        "tests\\VSE_test2.json",
         "-w",
         "Test",
     ]);
@@ -34,7 +34,7 @@ fn cannot_find_workload() {
 
     cmd.args(&[
         "-f",
-        "tests\\VSE_Result_15_04_2023, 14_59_30.json",
+        "tests\\VSE_test.json",
         "-w",
         "Test2",
     ]);
