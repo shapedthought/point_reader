@@ -109,17 +109,23 @@ fn main() -> Result<()> {
         .flat_map(|sites| sites.storage.iter())
         .flat_map(|storage| storage.points.primary_backup.iter())
         .map(|primary_backup| primary_backup.workload_name.clone())
+        .filter(|name| name.contains("showPoints"))
         .collect::<Vec<String>>();
 
     let workload_selected = if let Some(workload) = &cli.workload {
         workload_names.iter().position(|x| x == workload).unwrap()
     } else {
-        Select::with_theme(&ColorfulTheme::default())
+        if workload_names.len() == 1 {
+            println!("Only one workload found, selecting {} by default", workload_names[0].green().bold());
+            0 as usize
+        } else {
+            Select::with_theme(&ColorfulTheme::default())
             .with_prompt("Select a workload")
             .default(0)
             .items(&workload_names[..])
             .interact()
             .unwrap()
+        }
     };
 
     let workload_name = workload_names[workload_selected].clone();
@@ -165,7 +171,10 @@ fn main() -> Result<()> {
 
     let workload_name = &workload.workload_name;
 
-    println!("Workload Selected: {}", workload_name.green().bold());
+    if workload_names.len() > 1 {
+        println!("Workload Selected: {}", workload_name.green().bold());
+    }
+    
     println!("{}", table);
 
     table_totals

@@ -51,7 +51,7 @@ pub struct RawIn {
     pub cap_tier_repos: Vec<CapTierRepo>,
     pub data_properties: Vec<DataProperty>,
     pub perf_tier_repos: Vec<PerfTierRepo>,
-    pub project_length: i64,
+    pub project_length: f32,
     pub retentions: Vec<Retention>,
     pub show_points: bool,
     pub show_workloads: bool,
@@ -71,8 +71,8 @@ pub struct ArchTierRepo {
 pub struct BackupWindow {
     pub backup_window_id: String,
     pub backup_window_name: String,
-    pub full_window: i64,
-    pub incremental_window: i64,
+    pub full_window: f32,
+    pub incremental_window: f32,
     pub default: bool,
 }
 
@@ -88,9 +88,9 @@ pub struct CapTierRepo {
 pub struct DataProperty {
     pub data_property_id: String,
     pub data_property_name: String,
-    pub change_rate: i64,
-    pub compression: i64,
-    pub growth_factor: i64,
+    pub change_rate: f32,
+    pub compression: f32,
+    pub growth_factor: f32,
     pub default: bool,
 }
 
@@ -103,8 +103,8 @@ pub struct PerfTierRepo {
     pub copy_capacity_tier_enabled: bool,
     pub move_capacity_tier_enabled: bool,
     pub archive_tier_enabled: bool,
-    pub capacity_tier_days: i64,
-    pub archive_tier_days: i64,
+    pub capacity_tier_days: f32,
+    pub archive_tier_days: f32,
     pub capacity_tier_repo_id: String,
     pub archive_tier_repo_id: String,
     pub storage_type: String,
@@ -117,10 +117,10 @@ pub struct PerfTierRepo {
 pub struct Retention {
     pub retention_id: String,
     pub retention_name: String,
-    pub simple: i64,
-    pub weekly: i64,
-    pub monthly: i64,
-    pub yearly: i64,
+    pub simple: f32,
+    pub weekly: f32,
+    pub monthly: f32,
+    pub yearly: f32,
     pub default: bool,
 }
 
@@ -141,8 +141,8 @@ pub struct Workload {
     pub enabled: bool,
     pub site_id: String,
     #[serde(rename = "sourceTB")]
-    pub source_tb: i64,
-    pub units: i64,
+    pub source_tb: f32,
+    pub units: f32,
     pub workload_id: String,
     pub workload_name: String,
     pub workload_type: String,
@@ -177,22 +177,22 @@ pub struct Global {
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct VbrServer {
-    pub vbr_cores: i64,
-    pub vbr_ram: i64,
+    pub vbr_cores: f32,
+    pub vbr_ram: f32,
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct DbServer {
-    pub db_cores: i64,
-    pub db_ram: i64,
+    pub db_cores: f32,
+    pub db_ram: f32,
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct EnterpriseManager {
-    pub cores: i64,
-    pub ram: i64,
+    pub cores: f32,
+    pub ram: f32,
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
@@ -207,8 +207,8 @@ pub struct Site2 {
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Compute {
-    pub proxy_cores: i64,
-    pub proxy_ram: i64,
+    pub proxy_cores: f32,
+    pub proxy_ram: f32,
     pub repo_compute: Vec<RepoCompute>,
 }
 
@@ -217,8 +217,8 @@ pub struct Compute {
 pub struct RepoCompute {
     pub repo_id: String,
     pub repo_name: String,
-    pub repo_inc_cores: i64,
-    pub repo_inc_ram: i64,
+    pub repo_inc_cores: f32,
+    pub repo_inc_ram: f32,
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
@@ -258,22 +258,22 @@ pub struct PrimaryBackup {
     pub performance_tier_result: Vec<TierResult>,
     pub capacity_tier_result: Vec<TierResult>,
     pub archive_tier_result: Vec<TierResult>,
-    pub perf_tier_point_count: i64,
-    pub cap_tier_point_count: i64,
-    pub arch_tier_point_count: i64,
+    pub perf_tier_point_count: f32,
+    pub cap_tier_point_count: f32,
+    pub arch_tier_point_count: f32,
     pub total_performance: f64,
     pub total_capacity: f64,
     pub total_archive: f64,
     pub workspace: f64,
     pub individual_incremental_size: f64,
-    pub block_generation: i64,
+    pub block_generation: f32,
     pub performance_tier_immutability_tax: f64,
-    pub capacity_tier_immutability_tax: i64,
+    pub capacity_tier_immutability_tax: f32,
     pub repo_id: String,
     pub repo_name: String,
     pub cap_tier_repo_id: String,
     pub archive_tier_repo_id: String,
-    pub backup_type: i64,
+    pub backup_type: f32,
     pub copies_enabled: bool,
     pub perf_tier_transactions: PerfTierTransactions,
     pub cap_tier_transactions: CapTierTransactions,
@@ -291,7 +291,7 @@ pub struct TierResult {
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Point {
-    pub day: i64,
+    pub day: f32,
     pub is_full: bool,
     #[serde(rename = "isGFS")]
     pub is_gfs: bool,
@@ -301,83 +301,83 @@ pub struct Point {
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Flags {
-    pub daily: i64,
-    pub weekly: i64,
-    pub monthly: i64,
-    pub yearly: i64,
+    pub daily: f32,
+    pub weekly: f32,
+    pub monthly: f32,
+    pub yearly: f32,
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PerfTierTransactions {
-    pub offload_month: i64,
+    pub offload_month: f32,
     pub offload_type: String,
-    pub first_transactions: i64,
-    pub second_transactions: i64,
-    pub last_transactions: i64,
-    pub first_immut_trans: i64,
-    pub second_immut_trans: i64,
-    pub last_immut_trans: i64,
+    pub first_transactions: f32,
+    pub second_transactions: f32,
+    pub last_transactions: f32,
+    pub first_immut_trans: f32,
+    pub second_immut_trans: f32,
+    pub last_immut_trans: f32,
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CapTierTransactions {
-    pub offload_month: i64,
+    pub offload_month: f32,
     pub offload_type: String,
-    pub first_transactions: i64,
-    pub second_transactions: i64,
-    pub last_transactions: i64,
-    pub first_immut_trans: i64,
-    pub second_immut_trans: i64,
-    pub last_immut_trans: i64,
+    pub first_transactions: f32,
+    pub second_transactions: f32,
+    pub last_transactions: f32,
+    pub first_immut_trans: f32,
+    pub second_immut_trans: f32,
+    pub last_immut_trans: f32,
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ArchTierTransactions {
-    pub offload_month: i64,
+    pub offload_month: f32,
     pub offload_type: String,
-    pub first_transactions: i64,
-    pub second_transactions: i64,
-    pub last_transactions: i64,
-    pub first_immut_trans: i64,
-    pub second_immut_trans: i64,
-    pub last_immut_trans: i64,
+    pub first_transactions: f32,
+    pub second_transactions: f32,
+    pub last_transactions: f32,
+    pub first_immut_trans: f32,
+    pub second_immut_trans: f32,
+    pub last_immut_trans: f32,
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PefTierTransactions {
-    pub offload_days: i64,
-    pub first_transactions: i64,
-    pub second_transactions: i64,
-    pub last_transactions: i64,
-    pub first_immut_transactions: i64,
-    pub second_immut_transactions: i64,
-    pub last_immut_transactions: i64,
+    pub offload_days: f32,
+    pub first_transactions: f32,
+    pub second_transactions: f32,
+    pub last_transactions: f32,
+    pub first_immut_transactions: f32,
+    pub second_immut_transactions: f32,
+    pub last_immut_transactions: f32,
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CapTierTransactions2 {
-    pub offload_days: i64,
-    pub first_transactions: i64,
-    pub second_transactions: i64,
-    pub last_transactions: i64,
-    pub first_immut_transactions: i64,
-    pub second_immut_transactions: i64,
-    pub last_immut_transactions: i64,
+    pub offload_days: f32,
+    pub first_transactions: f32,
+    pub second_transactions: f32,
+    pub last_transactions: f32,
+    pub first_immut_transactions: f32,
+    pub second_immut_transactions: f32,
+    pub last_immut_transactions: f32,
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ArchiveTransactions {
-    pub offload_days: i64,
-    pub first_transactions: i64,
-    pub second_transactions: i64,
-    pub last_transactions: i64,
-    pub first_immut_transactions: i64,
-    pub second_immut_transactions: i64,
-    pub last_immut_transactions: i64,
+    pub offload_days: f32,
+    pub first_transactions: f32,
+    pub second_transactions: f32,
+    pub last_transactions: f32,
+    pub first_immut_transactions: f32,
+    pub second_immut_transactions: f32,
+    pub last_immut_transactions: f32,
 }
